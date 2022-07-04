@@ -41,6 +41,9 @@ build: ## Build Docker from Dockerfile
 run: ## Run Docker container
 	docker run --env-file ${PWD}/dev.env -v ${PWD}/saved.session:/app/saved.session ${DOCKER_ACCOUNT}/${PROJECTNAME}:latest
 
+daemon: ## Run Docker container
+	docker run --restart=on-failure:20 -d --env-file ${PWD}/dev.env -v ${PWD}/saved.session:/app/saved.session ${DOCKER_ACCOUNT}/${PROJECTNAME}:latest
+
 first_run: ## Run Docker container
 	docker run -i --env-file ${PWD}/dev.env -v ${PWD}/saved.session:/app/saved.session ${DOCKER_ACCOUNT}/${PROJECTNAME}:latest
 
