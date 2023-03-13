@@ -1,4 +1,4 @@
-DOCKER_ACCOUNT = percum
+DOCKER_ACCOUNT = vsvegner
 
 PWD := $(shell pwd)
 PROJECTNAME = $(shell basename $(PWD))
@@ -10,17 +10,9 @@ BRANCH=$(shell git rev-parse --abbrev-ref HEAD)
 TAG=$(shell git describe --tags |cut -d- -f1)
 BUILD_TIME?=$(shell date -u '+%Y-%m-%d_%H:%M:%S')
 
-PLATFORMS=linux windows
-# PLATFORMS=darwin linux windows
-# ARCHITECTURES=386 amd64 ppc64 arm arm64
-ARCHITECTURES=386 amd64 arm arm64
-
-LDFLAGS = -ldflags "-s -w -linkmode external -extldflags '-static' -X=main.Version=${VERSION} -X=main.Build=${COMMIT} -X main.gitTag=${TAG} -X main.gitCommit=${COMMIT} -X main.gitBranch=${BRANCH} -X main.buildTime=${BUILD_TIME}"
-# LDFLAGS = -ldflags "-s -w -X=main.Version=${VERSION} -X=main.Build=${COMMIT} -X main.gitTag=${TAG} -X main.gitCommit=${COMMIT} -X main.gitBranch=${BRANCH} -X main.buildTime=${BUILD_TIME}"
-
 # Check for required command tools to build or stop immediately
 EXECUTABLES = git find pwd basename
-K := $(foreach exec,$(EXECUTABLES),\
+	K := $(foreach exec,$(EXECUTABLES),\
         $(if $(shell which $(exec)),some string,$(error "No $(exec) in PATH)))
 
 .PHONY: help dep build run
