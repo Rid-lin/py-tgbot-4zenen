@@ -1,4 +1,4 @@
-from telethon import TelegramClient, sync, events
+from telethon import TelegramClient, events
 import os
 
 
@@ -17,7 +17,7 @@ words_s = os.getenv('TGB4Z_WORDS')
 client = TelegramClient("saved", api_id, api_hash)
 client.start()
 # print(client.get_me().stringify())
-chats_for_finging=tuple()
+chats_for_finging = tuple()
 # print all chats name
 for dialog in client.iter_dialogs():
     if dialog.id < 0:
@@ -28,19 +28,20 @@ words = words_s.split(" ")
 if additional_chat is not None:
     chats_for_finging = chats_for_finging + (additional_chat,)
 
-@client.on(events.NewMessage(chats=chats_for_finging
 
-))
+@client.on(events.NewMessage(chats=chats_for_finging))
 async def normal_handler(event):
     # print(event.message)
-    message=event.message
-    user_mess=event.message.to_dict()['message']
+    # message = event.message
+    user_mess = event.message.to_dict()['message']
 
-    s_user_id=event.message.to_dict()['from_id']
-    user_id=s_user_id['user_id']
+    s_user_id = event.message.to_dict()['from_id']
+    user_id = ""
+    if s_user_id:
+        user_id = s_user_id['user_id']
     for word in words:
         if word.lower() in user_mess.lower():
-            print( "'", user_mess, "' from '", user_id,"'" )
+            print(f"user message :\n'{user_mess}'\n from:\n'{user_id}'\n")
             await event.forward_to(forwarding_to)
             break
 
