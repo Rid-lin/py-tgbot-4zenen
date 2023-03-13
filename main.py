@@ -33,9 +33,9 @@ if additional_chat is not None:
 async def normal_handler(event):
     # print(event.message)
     # message = event.message
-    user_mess = event.message.to_dict()['message']
-
-    s_user_id = event.message.to_dict()['from_id']
+    event_message_dict = event.message.to_dict()
+    user_mess = event_message_dict['message']
+    s_user_id = event_message_dict['from_id']
     user_id = ""
     if s_user_id:
         user_id = s_user_id['user_id']
@@ -44,5 +44,8 @@ async def normal_handler(event):
             print(f"user message :\n'{user_mess}'\n from:\n'{user_id}'\n")
             await event.forward_to(forwarding_to)
             break
+    else:
+        print(f"not found key words in meassage with mess_id{1}", 
+              event_message_dict['id'])
 
 client.run_until_disconnected()
