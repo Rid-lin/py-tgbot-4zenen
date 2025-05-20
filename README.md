@@ -6,5 +6,5 @@ This bot monitors several chats and sends a message if a keyword appears in thes
 ## Usage 
 
 run container
-`docker run percum\py-tgbot-4zenen`
+`docker run vsvegner\py-tgbot-4zenen`
 
