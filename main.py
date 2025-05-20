@@ -14,7 +14,7 @@ additional_chat = os.getenv('TGB4Z_TEST')
 words_s = os.getenv('TGB4Z_WORDS')
 
 
-client = TelegramClient("saved", api_id, api_hash)
+client = TelegramClient("data/saved", api_id, api_hash)
 client.start()
 # print(client.get_me().stringify())
 chats_for_finging = tuple()

@@ -1,0 +1,20 @@
+# services:
+#   py-tgbot-4zenen:
+#     restart: on-failure:20
+#     env_file:
+#       - ./dev.env
+#     volumes:
+#       - ./data/saved.session:/app/saved.session
+#       - ./data/saved.session-journal:/app/saved.session-journal
+#     image: vsvegner/py-tgbot-4zenen:latest
+# networks: {}
+
+services:
+  py-tgbot-4zenen:
+    restart: never
+    env_file:
+      - ./dev.env
+    volumes:
+      - ./data/:/app/data
+    image: vsvegner/py-tgbot-4zenen:latest
+networks: {}
