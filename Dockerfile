@@ -1,4 +1,4 @@
-FROM python:3.10.5-alpine3.16
+FROM python:3.12.10-alpine3.20
 # Install app dependencies
 WORKDIR /app
 COPY requirements.txt .
@@ -6,7 +6,7 @@ COPY main.py .
 # ADD main.py /
 RUN pip install -r requirements.txt
 
-LABEL MAINTAINER Author vlad@vegner.org
+LABEL MAINTAINER Author vsvegner@yandex.ru
 # Bundle app source
 # COPY src /app
 # USER appuser
