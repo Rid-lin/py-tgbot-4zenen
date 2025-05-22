@@ -7,15 +7,17 @@ import os
 api_id = os.getenv('TGB4Z_ID')
 api_hash = os.getenv('TGB4Z_HASH')
 phone = os.getenv('TGB4Z_PHONE')
-phone = phone.replace("+", "")
+if phone is not None: phone = phone.replace("+", "")
 PASSWORD = os.environ.get('TGB4Z_PASSWORD')
 forwarding_to = int(os.getenv('TGB4Z_FORWARD'))
 additional_chat = os.getenv('TGB4Z_TEST')
 words_s = os.getenv('TGB4Z_WORDS')
 
+# Print envirovement
+print(f'Envirovements: api_id={api_id}, api_hash={api_hash}, phone_number={phone}, keywords={words_s}, target_chat_id={forwarding_to},{additional_chat}')
 
 client = TelegramClient("data/saved", api_id, api_hash)
-client.start()
+client.start(phone)
 # print(client.get_me().stringify())
 chats_for_finging = tuple()
 # print all chats name

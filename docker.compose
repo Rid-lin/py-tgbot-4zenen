@@ -1,17 +1,20 @@
+## Regular Run
 # services:
 #   py-tgbot-4zenen:
 #     restart: on-failure:20
 #     env_file:
 #       - ./dev.env
-#     volumes:
-#       - ./data/saved.session:/app/saved.session
-#       - ./data/saved.session-journal:/app/saved.session-journal
-#     image: vsvegner/py-tgbot-4zenen:latest
+    # volumes:
+    #   - ./data/:/app/data
+    # image: vsvegner/py-tgbot-4zenen:latest
 # networks: {}
 
+# First Run
 services:
   py-tgbot-4zenen:
-    restart: never
+    restart: no
+    stdin_open: true  # аналог `-i`
+    tty: true        # аналог `-t`
     env_file:
       - ./dev.env
     volumes:

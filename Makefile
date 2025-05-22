@@ -35,10 +35,11 @@ run: ## Run Docker container
 
 daemon: ## Run Docker container
 	docker run --restart=on-failure:20 -d --env-file ${PWD}/dev.env -v ${PWD}/saved.session:/app/saved.session ${DOCKER_ACCOUNT}/${PROJECTNAME}:latest
-# docker run --restart=on-failure:20 -d --env-file ./dev.env -v ./saved.session:/app/saved.session vvsvegner/py-tgbot-4zenen:latest
+# docker run --restart=on-failure:20 -d --env-file ./dev.env -v ./saved.session:/app/saved.session vsvegner/py-tgbot-4zenen:latest
 
 first_run: ## Run Docker container
 	docker run -i --env-file ${PWD}/dev.env -v ${PWD}/saved.session:/app/saved.session ${DOCKER_ACCOUNT}/${PROJECTNAME}:latest
+# docker run -i --env-file ./dev.env -v ./data:/app/data vsvegner/py-tgbot-4zenen:latest
 
 push: ## Pash Docker Image to hub.docker.com
 	docker tag ${DOCKER_ACCOUNT}/${PROJECTNAME}:${VERSION} ${DOCKER_ACCOUNT}/${PROJECTNAME}:${VERSION}
